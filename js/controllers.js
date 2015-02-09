@@ -6,6 +6,9 @@ var ostoskoriControllers = angular.module('ostoskoriControllers', []);
 
 ostoskoriControllers.controller('MainController', function($scope, $http, $localStorage, $timeout) {
 
+	// Browserify include underscore
+	var _ = require('underscore');
+
 	// Local storage init
 	$scope.$storage = $localStorage.$default({
 		totalItems: 0,

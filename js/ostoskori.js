@@ -1,3 +1,5 @@
+var controllers = require('./controllers');
+
 (function() {
 	
 var app = angular.module("ostoskori", ["ostoskoriControllers", "ngStorage", "ui.bootstrap"]);
@@ -23,7 +25,6 @@ var app = angular.module("ostoskori", ["ostoskoriControllers", "ngStorage", "ui.
 			templateUrl: 'view-dropdown.html',
 			controller: function($scope, $http) {
 	    
-	    	// Initialize form.
 	    	console.log("Directive loaded");
 	    	}
 	    };

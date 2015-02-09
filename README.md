@@ -1,5 +1,9 @@
 Shopping cart demonstration using Front-end only.
 
-Run program using a server environment like LAMP stack or similar.
+Run program using a server environment.
 
-Technologies used: Angular.js, Bower, Sass, Bourbon, Neat, Bootstrap.
+Development:
+npm install (For underscore and browserify)
+browserify ostoskori.js -o bundled.js (To add changes)
+
+Technologies used: Angular.js, Bower, Sass, Bourbon, Neat, Bootstrap, Browserify, Underscore.
