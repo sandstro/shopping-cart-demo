@@ -1,0 +1,320 @@
+@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
+@import "debug";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
+@import "mixins";
+
+// Grid setup
+.container {
+	@include outer-container;
+	@include pad(0 10px);
+}
+
+.row {
+	@include row();
+	@include outer-container;
+}
+
+.grid-item {
+	@include span-columns(1 of 5);
+
+	// Automatic rows, row every 5th item
+	@include omega(5n);
+
+	@include media($tablet) {
+		// Reset previous breakpoint omega
+		@include omega-reset(5n, $tablet-columns);
+		@include span-columns(1 of 4);
+		@include omega(4n);
+	}
+
+	@include media($landscape) {
+		// Reset previous breakpoint omegas
+		@include omega-reset(5n, $landscape-columns);
+		@include omega-reset(4n, $landscape-columns);
+		@include span-columns(1 of 3);
+		@include omega(3n);
+	}
+
+	@include media($mobile) {
+		// Reset previous breakpoint omegas
+		@include omega-reset(5n, $mobile-columns);
+		@include omega-reset(3n, $mobile-columns);
+		@include span-columns(1 of 2);
+		@include omega(2n);
+	}
+
+	margin-bottom:2rem;
+}
+
+.grid-header {
+	@include span-columns(5 of 5);
+	position:relative;
+}
+// End of Grid setup
+
+// Page styling
+body {
+	font-family: $font;
+	color: $primary-color;
+	background: url('../images/bg.jpg') no-repeat top center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+header {
+	background-color: $header-bg;
+
+	img.primary {
+		position:absolute;
+        top:15px;
+        left:0px;
+        z-index:1;
+	}
+
+	img.shadow {
+		position:absolute;
+        top:18px;
+        left:2px;
+        z-index:0;
+	}
+
+	.circle {
+		background:$darkblue;
+		padding:6px;
+		margin:0 6px;
+		border-radius:50%;
+		width:32px;
+		height:32px;
+		text-align: center;
+		display: inline-block;
+	}
+}
+
+section {
+	margin-top:8rem;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+.addToCart {
+	background-color: $lightblue;
+	padding: 5px 0px;
+	width:100%;
+    text-align: left;
+
+	span {
+		font-size:1em;
+	}
+}
+
+.peopleAmount {
+	background-color: $darkblue;
+}
+
+.itemName {
+	width:100%;
+}
+
+p {
+	&.itemName {
+		margin:0;
+		padding:5px 0;
+		background-color:#fff;
+		font-family: $fontfamily;
+		font-size:2em;
+		color: #7A5A00;
+		overflow: hidden;
+	}
+
+	&.itemPrice {
+		width:45%;
+		margin:0;
+		padding: 8px 0 8px 10px;
+		background-color:$darkblue;
+		font-size:.9em;
+	}
+}
+
+.itemToCart {
+	width:55%;
+	margin:0;
+	background-color:$lightblue;
+	padding: 7px 0;
+	a {
+		font-size:.8em;
+		span.addPad {
+			padding:10px 0;
+		}
+	}
+
+	&:hover {
+		background-color:#000;
+	}
+}
+
+.styled-select {
+	width:38px;
+	height:32px;
+	padding: 0 0 0 0px;
+	overflow: hidden;
+	background: url(../images/triangle-down.svg) no-repeat right $lightblue;
+	background-size: 15px;
+	border: 5px solid $darkblue;
+
+	select {
+		option {
+			color:#000;
+			background:#fff;
+		}
+		background: transparent;
+		width: 48px;
+		padding: 0px 0 0 10px;
+		margin: 0 0 0 -5px;
+		font-size: 14px;
+		line-height: 1;
+		border: 0;
+		border-radius: 0;
+		height: 22px;
+		-webkit-appearance: none;
+	}
+}
+
+table {
+	width:100%;
+}
+
+.firstRow {
+	background:$darkblue;
+	
+	td.first {
+		width:45%;
+	}
+	td.second {
+		font-size:0.8em;
+		width:55%;
+		text-align:left;
+	}
+}
+
+.secondRow {
+	background:$lightblue;
+	td .addPad {
+		padding:7px 15px;
+	}
+}
+
+small {
+	&.price {
+		color:$lightblue;
+	}
+
+	&.euro {
+		font-size: .7em;
+	}
+}
+
+section {
+	.dropdown {
+		background-color: $lightblue;
+	}
+
+	.dropdown-menu {
+		min-width: 100%;
+		width: 100%;
+		margin:0;
+		padding:0;
+		border-radius: 0;
+		border:none;
+
+		li a {
+			color:$primary-color;
+
+			&:hover {
+				color:$primary-color;
+				background-color:inherit;
+			}
+		}
+	}
+}
+
+.media {
+	padding: 1rem;
+	margin:0;
+	clear:right;
+	max-width:100%;
+	width:40rem;
+
+    h4 {
+        font-size:1em;
+    }
+    p {
+    	font-size:0.8em;
+    }
+    img {
+    	max-height:12rem;
+    }
+}
+
+.cart {
+	padding: 0 5px;
+
+	.padded {
+		padding:20px 0;
+	}
+	&.cart-bg:hover {
+		background: url(../images/triangle-down.svg) no-repeat bottom center $lightblue;
+		background-size: 15px;
+	}
+	.dropdown-menu {
+		background-color: $darkblue;
+		padding: 5px;
+		top:90%;
+		max-width: 100%;
+
+		.even {
+			background-color: $lightblue;
+		}
+		.odd {
+			background-color: $darkblue;
+		}
+		.last {
+			margin: 0 0 5px 0;
+		}
+		button {
+			margin:0;
+
+			&.btn-default {
+				color: $darkblue;
+			}
+		}
+	}
+}
+
+td {
+	height:32px;
+}
+
+.inline-block {
+	display:inline-block;
+}
+
+div.alert {
+	position:absolute;
+	width:195px;
+	right:0;
+	text-align: center;
+}
+
+.modal-header {
+	color:$darkblue;
+}
+
+.modal-body {
+	color:#000;
+}
+// End of Page styling
