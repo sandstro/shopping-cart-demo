@@ -6,13 +6,8 @@
 var ostoskoriControllers = angular.module('ostoskoriControllers', []);
 
 ostoskoriControllers.controller('MainController', function($scope, $http, $localStorage, $timeout) {
-
-	// Browserify include underscore
+	// Browserify
 	var _ = require('underscore');
-
-	_.each([1, 2, 3], function (n) {
-	  console.log(n);
-	});
 
 	// Local storage init
 	$scope.$storage = $localStorage.$default({
@@ -54,21 +49,19 @@ ostoskoriControllers.controller('MainController', function($scope, $http, $local
 		//adults = adults.value;
 		var order = datum;
 		var added = false;
+		var objectFound = {};
 		order.adults = adults;
 		$scope.showAdd = true;
 
-		/* 
-		 * Check if there's a trip to the location:
-		 * - Yes: change amount of adults.
-		 * - No: push to array.
-		 */  
-		for (var i = 0; i < $scope.$storage.orders.length; ++i) {
-			if ($scope.$storage.orders[i].id == order.id) {
+		objectFound = _.find($scope.$storage.orders, function(item) {
+			return item.id == order.id;
+		});
 
-				$scope.$storage.orders[i].adults = order.adults;
-				added = true;
-			}  
+		if (objectFound != undefined) {
+			objectFound.adults = order.adults;
+			added = true;
 		}
+
 		if (!added) {
 			$scope.$storage.totalItems++;
 			$scope.$storage.orders.push(order);
@@ -207,6 +200,7 @@ ostoskoriControllers.controller('MainController', function($scope, $http, $local
 })();
 
 },{"underscore":3}],2:[function(require,module,exports){
+// Browserify bundle
 var controllers = require('./controllers');
 
 (function() {

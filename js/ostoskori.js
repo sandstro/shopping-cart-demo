@@ -1,3 +1,4 @@
+// Browserify bundle
 var controllers = require('./controllers');
 
 (function() {
